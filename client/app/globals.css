@@ -1,41 +1,63 @@
 @import "tailwindcss";
 
-body {
-  color: #fff;
+@theme {
+  /* --- 1. Brand Colors --- */
+  /* Defining these variables here allows Tailwind to create text-*, bg-*, and border-* automatically */
+  --color-primary: #e9c176;
+  --color-secondary: #d1c5b4;
+  --color-background: #0a0a0a;
+  --color-section-bg: #131313;
+
+  /* --- 2. Custom Spacing & Breakpoints --- */
+  /* If you still need your specific widths, define them as custom spacing values */
+  --spacing-160: 40rem;
+  
+  /* Adding a custom ease for luxury animations */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-:root {
-  --primary-color: #e9c176;
-  --secondary-color: #d1c5b4;
-  --section-bg: #131313;
+/* --- 3. Base Styles --- */
+@layer base {
+  *, ::before, ::after {
+    @apply border-white/10; /* Sets a global default border color */
+  }
+
+  body {
+    @apply bg-background text-white antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
 }
 
-.c_primary {
-  color: var(--primary-color);
-}
-
-.c_secondary {
-  color: var(--secondary-color);
-}
-
-.b_primary {
-  background-color: var(--primary-color);
-}
-
-.b_section {
-  background-color: var(--section-bg);
-}
-
-@layer utilities {
+/* --- 4. Custom Components & Layouts --- */
+@layer components {
+  /* Your Dynamic Fluid Container (The 'Best Practice' version) */
   .container {
-    @apply w-full sm:w-160 md:w-3xl lg:w-5xl xl:w-7xl mx-auto px-3 sm:px-0 h-full;
+    @apply w-full max-w-7xl mx-auto h-full;
+    padding-left: clamp(1rem, 5vw, 2.5rem);
+    padding-right: clamp(1rem, 5vw, 2.5rem);
   }
 
-  .f_between {
-    @apply flex justify-between items-center;
+  /* Structural Helpers */
+  .f_between { @apply flex items-center justify-between; }
+  .f_center  { @apply flex items-center justify-center; }
+  .f_start   { @apply flex items-center justify-start; }
+  
+  /* Luxury Button Style (Reusable) */
+  .btn-primary {
+    @apply bg-primary text-background px-8 py-3 rounded-full font-bold 
+           uppercase tracking-widest text-[10px] transition-all duration-500
+           hover:scale-105 hover:bg-white active:scale-95;
   }
+}
 
-  .f_center {
-    @apply flex justify-center items-center;
+/* --- 5. Advanced Utilities (Gradients & Blurs) --- */
+@layer utilities {
+  .bg-glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+  
+  /* Smooth Text Gradient for Hero Titles */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-linear-to-r from-white to-white/40;
   }
 }
