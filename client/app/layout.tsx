@@ -2,6 +2,7 @@ import { Poppins  } from 'next/font/google';
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/common/header/Header";
+import Footer from '@/components/ui/home/footer/Footer';
 
 const poppins = Poppins({
   subsets: ['latin'],      
@@ -25,7 +26,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
           <Header />
             {children}
-
+          <Footer />
       </body>
     </html>
   );

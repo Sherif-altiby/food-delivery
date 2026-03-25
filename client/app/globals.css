@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+button{
+  cursor: pointer !important;
+}
+
 @theme {
   /* --- 1. Brand Colors --- */
   /* Defining these variables here allows Tailwind to create text-*, bg-*, and border-* automatically */
