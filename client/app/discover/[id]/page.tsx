@@ -1,5 +1,5 @@
-import ProductGalaray from "@/components/ui/home/discover/ProductGalaray";
-import ProductInfo from "@/components/ui/home/discover/ProductInfo";
+import ProductGalaray from "@/components/ui/discover/ProductGalaray";
+import ProductInfo from "@/components/ui/discover/ProductInfo";
 
 const ProductDetails = () => {
   
